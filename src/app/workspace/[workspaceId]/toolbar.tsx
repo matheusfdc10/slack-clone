@@ -18,10 +18,8 @@ import { useGetMembers } from "@/features/members/api/use-get-members";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-type Props = {
- 
-}
-export const Toolbar = ({}: Props) => {
+
+export const Toolbar = () => {
     const router = useRouter();
     const workspaceId = useWorkspaceId();
     

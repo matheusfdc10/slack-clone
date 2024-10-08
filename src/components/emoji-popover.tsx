@@ -1,6 +1,6 @@
 
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
+// import Picker from "@emoji-mart/react";
+// import data from "@emoji-mart/data";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";

@@ -16,7 +16,7 @@ export const Conversation = ({
 }: Props) => {
     const memberId = useMemberId()
 
-    const { onOpenProfile, profileMemberId, onClose } = usePanel();
+    const { onOpenProfile } = usePanel();
 
     const { data: member, isLoading: memberIsLoading } = useGetMember({ id: memberId });
     const { results, status, loadMore } = useGetMessages({ conversationId: id })

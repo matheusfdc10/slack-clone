@@ -12,10 +12,8 @@ import { useCreateChannelModal } from "@/features/channels/store/use-create-chan
 import { useChannelId } from "@/hooks/use-channel-id";
 import { useMemberId } from "@/hooks/use-member-id";
 
-type Props = {
- 
-}
-export const WorkspaceSidebar = ({}: Props) => {
+
+export const WorkspaceSidebar = () => {
     const memberId = useMemberId()
     const channelId = useChannelId();
     const workspaceId = useWorkspaceId();
@@ -24,8 +22,8 @@ export const WorkspaceSidebar = ({}: Props) => {
 
     const { data: member, isLoading: memberIsLoading} = useCurrentMember({ workspaceId });
     const { data: workspace, isLoading: workspaceIsLoading } = useGetWorkspace({ id: workspaceId });
-    const { data: channels, isLoading: channelsIsLoading } = useGetChannels({ workspaceId });
-    const { data: members, isLoading: membersIsLoading } = useGetMembers( { workspaceId } );
+    const { data: channels } = useGetChannels({ workspaceId });
+    const { data: members } = useGetMembers( { workspaceId } );
 
 
     if (workspaceIsLoading || memberIsLoading) {

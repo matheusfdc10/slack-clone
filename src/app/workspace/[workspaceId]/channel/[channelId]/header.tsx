@@ -51,11 +51,11 @@ export const Header = ({
         if (!ok) return;
 
         removeChannel({ id: channelId}, {
-            onSuccess(data) {
+            onSuccess() {
                 toast.success("Channel deleted")
                 router.replace(`/workspace/${workspaceId}`)
             },
-            onError(error) {
+            onError() {
                 toast.error("Error deleting channel")
             }
         })
@@ -69,7 +69,7 @@ export const Header = ({
                 setEditOpen(false)
                 toast.success("Channel updated")
             },
-            onError: (error) => {
+            onError: () => {
                 toast.error("Failed to update channel")
             }
         })

@@ -9,10 +9,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-type Props = {
- 
-}
-export const CreateWorkspaceModal = ({}: Props) => {
+
+export const CreateWorkspaceModal = () => {
     const router = useRouter();
     const [open, setOpen] = useCreateWorkspaceModal();
     const [name, setName] = useState("")

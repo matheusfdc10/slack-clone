@@ -4,10 +4,8 @@ import { SidebarButton } from "./sidebar-button";
 import { Bell, Home, MessagesSquare, MoreHorizontal } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-type Props = {
- 
-}
-export const Sidebar = ({}: Props) => {
+
+export const Sidebar = () => {
     const pathName = usePathname()
 
     return ( 

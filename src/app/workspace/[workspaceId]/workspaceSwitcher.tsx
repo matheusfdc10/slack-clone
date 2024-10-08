@@ -7,16 +7,14 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { Loader, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-type Props = {
- 
-}
-export const WorkspaceSwitcher = ({}: Props) => {
+
+export const WorkspaceSwitcher = () => {
     const router = useRouter()
     const workspaceId = useWorkspaceId()
     const [_open, setOpen] = useCreateWorkspaceModal()
 
     const { data: workspace, isLoading: workspaceIsLoading } = useGetWorkspace({ id: workspaceId })
-    const { data: workspaces, isLoading: workspacesIsLoading } = useGetWorkspaces();
+    const { data: workspaces } = useGetWorkspaces();
 
     const filtereWorkspaces = workspaces?.filter(
         (workspace) => workspace?._id !== workspaceId
