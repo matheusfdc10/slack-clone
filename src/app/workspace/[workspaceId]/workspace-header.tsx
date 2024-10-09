@@ -16,6 +16,7 @@ export const WorkspaceHeader = ({
     workspace,
     isAdmin
 }: Props) => {
+    const [open, setOpen] = useState(false)
     const [preferencesOpen, setPreferencesOpen] = useState(false)
     const [inviteOpen, setInviteOpen] = useState(false)
 
@@ -33,7 +34,7 @@ export const WorkspaceHeader = ({
                 initialValue={workspace.name}
             />
             <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
-                <DropdownMenu>
+                <DropdownMenu open={open} onOpenChange={setOpen}>
                     <DropdownMenuTrigger asChild>
                         <Button
                             variant="transparent"
@@ -61,14 +62,20 @@ export const WorkspaceHeader = ({
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     className="cursor-pointer py-2"
-                                    onClick={() => setInviteOpen(true)}
+                                    onClick={() => {
+                                        setOpen(false);
+                                        setInviteOpen(true);
+                                    }}
                                 >
                                     Invite people to {workspace.name}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     className="cursor-pointer py-2"
-                                    onClick={() => setPreferencesOpen(true)}
+                                    onClick={() => {
+                                        setOpen(false);
+                                        setPreferencesOpen(true)
+                                    }}
                                 >
                                     Preferences
                                 </DropdownMenuItem>

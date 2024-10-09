@@ -14,6 +14,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 type Props = {
     memberId: Id<"members">,
@@ -23,6 +24,7 @@ export const Profile = ({
     memberId,
     onClose
 }: Props) => {
+    const [open, setOpen] = useState(false)
     const router = useRouter()
     const workspaceId = useWorkspaceId();
 
@@ -93,7 +95,7 @@ export const Profile = ({
         }, {
             onSuccess: () => {
                 toast.success("Role changed");
-                onClose();
+                // onClose();
             },
             onError: (error) => {
                 toast.error("Failed to change role")
@@ -165,7 +167,7 @@ export const Profile = ({
                         </p>
                             {currentMember?._id !== memberId && currentMember?.role === "admin" ? (
                                 <div className="flex items-center gap-2 mt-4 flex-wrap @[210px]:flex-nowrap">
-                                    <DropdownMenu>
+                                    <DropdownMenu open={open} onOpenChange={setOpen}>
                                         <DropdownMenuTrigger asChild>
                                             <Button 
                                                 variant="outline"

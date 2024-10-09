@@ -51,15 +51,15 @@ export const Toolbar = () => {
                 </Button>
 
                 <CommandDialog open={open} onOpenChange={setOpen}>
-                    <CommandInput placeholder="Type a command or search..." />
+                    <CommandInput placeholder="Search for a channel or member" />
                     <CommandList>
                         <CommandEmpty>No results found.</CommandEmpty>
                         <CommandGroup heading="Channels">
-                            {channels?.map((channel) => (
+                            {channels?.map((channel, i) => (
                                 <CommandItem 
                                     key={channel._id}
                                     id={channel._id}
-                                    value={channel.name}
+                                    value={`${i} ${channel.name}`}
                                     onSelect={() => onChannelClick(channel._id)}
                                 >
                                     # {channel.name}
@@ -68,11 +68,12 @@ export const Toolbar = () => {
                         </CommandGroup>
                         <CommandSeparator />
                         <CommandGroup heading="Members">
-                            {members?.map((member) => (
+                            {members?.map((member, i) => (
                                 <CommandItem
                                     key={member._id}
                                     id={member._id}
-                                    value={member.user.name} 
+                                    itemID={member._id}
+                                    value={`${i} ${member.user.name} ${member.user.email}`} 
                                     onSelect={() => onMemberClick(member._id)}
                                 >
                                     <Avatar className="size-6 mr-2">

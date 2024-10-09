@@ -6,12 +6,14 @@ import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { Loader, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 export const WorkspaceSwitcher = () => {
     const router = useRouter()
     const workspaceId = useWorkspaceId()
-    const [_open, setOpen] = useCreateWorkspaceModal()
+    const [_, setOpenCreateWorkspaceModal] = useCreateWorkspaceModal()
+    const [open, setOpen] = useState(false)
 
     const { data: workspace, isLoading: workspaceIsLoading } = useGetWorkspace({ id: workspaceId })
     const { data: workspaces } = useGetWorkspaces();
@@ -21,7 +23,7 @@ export const WorkspaceSwitcher = () => {
     )
 
     return ( 
-        <DropdownMenu>
+        <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
                 <Button className="size-9 relative overflow-hidden bg-[#ABABAD] hover:bg-[#ABABAD]/80 text-slate-800 font-semibold text-xl">
                     {workspaceIsLoading ? (
@@ -56,7 +58,10 @@ export const WorkspaceSwitcher = () => {
                     </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem
-                    onClick={() => setOpen(true)}
+                    onClick={() => {
+                        setOpen(false)
+                        setOpenCreateWorkspaceModal(true)
+                    }}
                     className="cursor-pointer"
                 >
                     <div className="size-9 relative overflow-hidden bg-[#F2F2F2] text-slate-800 font-semibold text-lg rounded-md flex items-center justify-center mr-2">
