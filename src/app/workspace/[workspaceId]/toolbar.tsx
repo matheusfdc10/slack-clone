@@ -58,7 +58,8 @@ export const Toolbar = () => {
                             {channels?.map((channel) => (
                                 <CommandItem 
                                     key={channel._id}
-                                    value={channel._id}
+                                    id={channel._id}
+                                    value={channel.name}
                                     onSelect={() => onChannelClick(channel._id)}
                                 >
                                     # {channel.name}
@@ -69,8 +70,9 @@ export const Toolbar = () => {
                         <CommandGroup heading="Members">
                             {members?.map((member) => (
                                 <CommandItem
-                                    key={member._id} 
-                                    value={member._id} 
+                                    key={member._id}
+                                    id={member._id}
+                                    value={member.user.name} 
                                     onSelect={() => onMemberClick(member._id)}
                                 >
                                     <Avatar className="size-6 mr-2">
